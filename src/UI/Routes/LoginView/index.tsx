@@ -35,7 +35,7 @@ const LoginView: React.FC = () => {
         onSuccess: (resp: { data: IUser; }) => {
             const data = resp.data || {};
             setUser(data)
-            navigate('/home/poemas/')
+            navigate('/home/amor')
             void message.success('Login Exitoso')
         },
         onError: (error: AxiosError) => {
