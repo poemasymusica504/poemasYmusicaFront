@@ -24,7 +24,7 @@ const SingInForm: React.FC =  () => {
             const data = resp.data || {};
             void message.success('Usuario creado exitosamente')
             setUser(data)
-            navigate('/home/poemas/')
+            navigate('/home/amor/')
             void message.success('Login Existoso')
             
         },
