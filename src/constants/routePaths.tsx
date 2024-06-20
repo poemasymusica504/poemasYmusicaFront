@@ -1,5 +1,5 @@
 const   routePaths = {
-    LOGIN: 'login',
+    LOGIN: '',
     DEFAULT_HOME: 'home',
     DEFAULTSEE: ':id/',
     DEFAULTEDITCREATE: ':accion/:id/',
