@@ -59,9 +59,6 @@ const HomeRoutes = () => {
 
 export default function RouterApp() {
 
-    const url = new URL(window.location.href);
-    const params = new URLSearchParams(url.search);
-
     return (
         <BrowserRouter>
             <RequestInterceptor>

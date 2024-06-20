@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { ConfigProvider, theme, App } from 'antd';
 import './App.css'
 import useModeStore from './infrastructure/context/ModeFontStore';
