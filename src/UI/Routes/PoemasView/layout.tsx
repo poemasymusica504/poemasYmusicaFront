@@ -4,11 +4,13 @@ import { usePoema } from "../../../infrastructure/hooks/usePoema";
 import ListAmor from "./listAmor"
 import { poemaDTO } from "../../../infrastructure/repositories/poemas";
 import { useNavigate } from "react-router-dom";
+import useUserStore from "../../../infrastructure/context/User";
 
 
 const Layout: FC = () => {
 
     const navigate = useNavigate()
+    const { admin } = useUserStore((state) => state)
     const { data: amor, isError, error } = usePoema({tipo: 'amor'});
     if (isError) {
         return (
@@ -21,7 +23,9 @@ const Layout: FC = () => {
     }
     return (
         <>  
-            <Button onClick={() => navigate('crear/0/')}>Crear Poema</Button>
+            { admin && 
+                <Button onClick={() => navigate('crear/0/')}>Crear Poema</Button>
+            }
             <ListAmor list={amor.results as poemaDTO[]} />
         </>
     )

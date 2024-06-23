@@ -22,13 +22,12 @@ const LoginView: React.FC = () => {
     const { darkMode } = useModeStore((state) => state);
     const { setUser, resetUser } = useUserStore((state) => state);
     const [ singIn, setSingIn ] = useState(false);
-    console.log(singIn)
     
     const repository = new UserRepository();
 
     useEffect(() => {
         resetUser();
-    }, [])
+    }, [resetUser])
 
     const { mutate, isPending } = useMutation({
         mutationFn: (data: LoginProps) => repository.Login({ ...data }),

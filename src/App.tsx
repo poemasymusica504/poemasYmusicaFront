@@ -18,7 +18,6 @@ function MyApp() {
         algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
         components: {
           Segmented: {
-            itemSelectedBg: '#fa1f03',
           },
           Notification: {
             zIndexPopup: 3050,

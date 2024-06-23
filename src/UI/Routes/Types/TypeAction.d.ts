@@ -1,0 +1,1 @@
+export type TypeAction = 'create' | 'update' | 'see' | 'delete';

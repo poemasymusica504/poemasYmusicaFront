@@ -1,6 +1,8 @@
-import { Card, Typography } from "antd";
+import { Button, Card, Typography } from "antd";
 import bannerPoema from '@assets/bannerpoema.png';
 import { poemaDTO } from "../../../infrastructure/repositories/poemas";
+import useUserStore from "../../../infrastructure/context/User";
+import { useNavigate } from "react-router-dom";
 
 interface ReadProps {
     isLoading?: boolean
@@ -10,6 +12,10 @@ interface ReadProps {
 const Read: React.FC<ReadProps> = ({ data, isLoading }) => {
     
     const { Paragraph, Title } = Typography;
+
+    const { admin } = useUserStore((state) => state);
+    
+    const navigate = useNavigate(); 
     
     return (
         <Card
@@ -49,6 +55,12 @@ const Read: React.FC<ReadProps> = ({ data, isLoading }) => {
             >
                 {data.escritor} | {data.create_at}
             </Paragraph>
+            <div style={{ display:'flex', justifyContent:'end', paddingTop: '5px'}}>
+                <Button onClick={() => navigate(`/home/${data.tipo}/`)}>Salir</Button> 
+                { admin && 
+                   <Button onClick={() => navigate(`/home/${data.tipo}/editar/${data.id}/`)} type="primary">Editar</Button> 
+                }
+            </div>
         </Card>
     )
 }

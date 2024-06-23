@@ -12,8 +12,8 @@ export type poemaDTO = {
     poema: string
     img_url: string
     tipo: string
-    create_at: string
-    user_id_favorito: number[]
+    create_at?: string
+    user_id_favorito?: number[]
 }
 
 type params = {
@@ -39,7 +39,7 @@ export class amorRepository {
 
     async getAmor(id: string) {
         if (!id) return;
-        const url = `${URL_API}/poema/${id}/`
+        const url = `${URL_API}/poema/${id}/`;
         const { data } = await axios.get<poemaDTO>(url).then((response) => {
             const data = {
                 ...response,
@@ -47,6 +47,34 @@ export class amorRepository {
             };
             return data;
         });
+
+        return data;
+    }
+
+    async create(dataPoema: poemaDTO) {
+        const url = `${URL_API}/poema/`;
+        const { data } = await axios.post<poemaDTO>(url, dataPoema).then((response) => {
+            const data = {
+                ...response,
+                data: response.data,
+            };
+
+            return data;
+        })
+
+        return data;
+    }
+
+    async edit(dataPoema: poemaDTO) {
+        const url = `${URL_API}/poema/${dataPoema.id}/`;
+        const { data } = await axios.put<poemaDTO>(url, dataPoema).then((response) => {
+            const data = {
+                ...response,
+                data: response.data,
+            };
+
+            return data;
+        })
 
         return data;
     }

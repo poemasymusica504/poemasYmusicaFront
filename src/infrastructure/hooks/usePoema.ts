@@ -1,6 +1,7 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query"
+import { keepPreviousData, useMutation, useQuery } from "@tanstack/react-query"
 import { poemaDTO, repository } from '../repositories/poemas'
 import React from "react";
+import { TypeAction } from "../../UI/Routes/Types/TypeAction";
 
 export const usePoema = ({...filtro}) => {
     const params = {
@@ -49,3 +50,31 @@ export const getPoemaById = (poemaId: string) => {
         isLoading: query.isLoading && query.fetchStatus !== 'idle',
     };
 };
+
+export const createPoema = () => {
+    const mutation = useMutation({
+        mutationFn: (record: poemaDTO) => {
+            return repository.create(record)
+        },
+    });
+    return mutation;
+}
+
+export const editPoema = () => {
+    const mutation = useMutation({
+        mutationFn: (record: poemaDTO) => {
+            return repository.edit(record)
+        },
+    });
+    return mutation;
+}
+
+export const useMutationType = (type: TypeAction) => {
+    const JsonType = {
+        'see':null,
+        'create':createPoema(),
+        'update':editPoema(),
+        'delete':null,
+    };
+    return JsonType[type];
+}

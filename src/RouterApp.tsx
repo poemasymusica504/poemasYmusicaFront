@@ -39,7 +39,6 @@ const HomeRoutes = () => {
         <ConfigProvider 
             theme={{
                 token: {
-                    colorPrimary: '#fa1f03'
                 }
             }}
         >
