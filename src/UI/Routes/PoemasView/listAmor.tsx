@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC } from "react"
 import { poemaDTO } from "../../../infrastructure/repositories/poemas"
 import { Col, Row } from "antd"
 import PoemaCard from "../../Components/Poemas/card"
@@ -8,35 +8,18 @@ interface listAmorPros {
 }
 
 const listAmor: FC<listAmorPros> = ({ list }) => {
-
-    const [ span, setSpan ] = useState(6)
-
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth < 420) {
-                setSpan(22)
-            } else if (window.innerWidth < 700) {
-                setSpan(10)
-            } else {
-                setSpan(6)
-            }
-        };
-
-        handleResize();
-
-        window.addEventListener('resize', handleResize);
-
-        return () => window.removeEventListener('resize', handleResize);
-	}, []);
     
     return (
-        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} wrap style={{ alignContent: 'center', justifyContent: 'center' }}>
+        <Row gutter={24} wrap style={{ alignContent: 'center', justifyContent: 'center' }}>
             {list && list.map((poema) => 
                 <Col 
                     key={poema.id}
-                    className="gutter-row" 
-                    span={span} 
+                    className="gutter-row"  
                     style={{ padding: 12 }}
+                    xs={20}
+                    sm={15}
+                    md={12}
+                    lg={7}
                 >
                    <PoemaCard  poema={poema} />
                 </Col>
